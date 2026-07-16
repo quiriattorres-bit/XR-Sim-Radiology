@@ -1,74 +1,292 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>XR-Sim Radiology</title>
+/* ======================================================
+   XR-Sim Radiology
+   Version 1.0
+====================================================== */
 
-    <link rel="stylesheet" href="style.css">
-</head>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
 
-<body>
+body{
 
-<header>
-    <h1>🩻 XR-Sim Radiology</h1>
-    <p>Simulador de Posicionamiento Radiográfico</p>
-</header>
+    font-family:Arial, Helvetica, sans-serif;
 
-<main>
+    background:#d8eefc;
 
-<section id="room">
+    color:#222;
 
-    <div id="tube" class="item">
-        ☢️
-        <span>Tubo RX</span>
-    </div>
+}
 
-    <div id="patient" class="item">
-        👤
-        <span>Paciente</span>
-    </div>
+/* ================= HEADER ================= */
 
-    <div id="detector" class="item">
-        🟦
-        <span>Detector</span>
-    </div>
+header{
 
-</section>
+    background:#0066cc;
 
-<section id="panel">
+    color:white;
 
-<h2>Panel de Control</h2>
+    text-align:center;
 
-<label>
-kVp
-<input type="range" id="kvp" min="50" max="120" value="80">
-<span id="kvValue">80</span>
-</label>
+    padding:20px;
 
-<label>
-mAs
-<input type="range" id="mas" min="1" max="40" value="10">
-<span id="masValue">10</span>
-</label>
+    box-shadow:0 5px 12px rgba(0,0,0,.25);
 
-<label>
-SID
-<input type="range" id="sid" min="100" max="180" value="180">
-<span id="sidValue">180</span>
-</label>
+}
 
-<button id="shoot">
-📸 Tomar Radiografía
-</button>
+header h1{
 
-<div id="feedback"></div>
+    font-size:38px;
 
-</section>
+}
 
-</main>
+header p{
 
-<script src="script.js"></script>
+    margin-top:10px;
 
-</body>
-</html>
+    font-size:18px;
+
+}
+
+/* ================= ROOM ================= */
+
+#room{
+
+    position:relative;
+
+    width:1100px;
+
+    max-width:95%;
+
+    height:600px;
+
+    margin:30px auto;
+
+    background:#f8fbff;
+
+    border-radius:20px;
+
+    border:5px solid #9ec9ef;
+
+    overflow:hidden;
+
+    box-shadow:0 12px 25px rgba(0,0,0,.2);
+
+}
+
+/* Piso */
+
+#room::after{
+
+    content:"";
+
+    position:absolute;
+
+    bottom:0;
+
+    width:100%;
+
+    height:80px;
+
+    background:#d5d5d5;
+
+}
+
+/* ================= OBJETOS ================= */
+
+.item{
+
+    position:absolute;
+
+    width:100px;
+
+    height:100px;
+
+    background:white;
+
+    border:3px solid #0b6fc2;
+
+    border-radius:18px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    cursor:grab;
+
+    font-size:42px;
+
+    box-shadow:0 8px 15px rgba(0,0,0,.18);
+
+    user-select:none;
+
+    touch-action:none;
+
+    transition:.2s;
+
+}
+
+.item:hover{
+
+    transform:scale(1.05);
+
+}
+
+.item span{
+
+    font-size:13px;
+
+    font-weight:bold;
+
+    margin-top:8px;
+
+}
+
+/* ================= POSICIONES ================= */
+
+#tube{
+
+    left:470px;
+
+    top:40px;
+
+}
+
+#patient{
+
+    left:490px;
+
+    top:220px;
+
+}
+
+#detector{
+
+    left:490px;
+
+    top:430px;
+
+}
+
+/* ================= PANEL ================= */
+
+#panel{
+
+    width:1100px;
+
+    max-width:95%;
+
+    margin:25px auto;
+
+    background:white;
+
+    border-radius:20px;
+
+    padding:25px;
+
+    box-shadow:0 10px 20px rgba(0,0,0,.15);
+
+}
+
+#panel h2{
+
+    color:#0066cc;
+
+    margin-bottom:20px;
+
+}
+
+label{
+
+    display:block;
+
+    margin:20px 0;
+
+    font-weight:bold;
+
+}
+
+input[type=range]{
+
+    width:100%;
+
+    margin-top:8px;
+
+}
+
+/* ================= BOTÓN ================= */
+
+button{
+
+    width:100%;
+
+    padding:18px;
+
+    border:none;
+
+    border-radius:15px;
+
+    background:#00a2ff;
+
+    color:white;
+
+    font-size:20px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+button:hover{
+
+    background:#0083d4;
+
+}
+
+/* ================= RESULTADOS ================= */
+
+#feedback{
+
+    margin-top:25px;
+
+    font-size:22px;
+
+    font-weight:bold;
+
+    text-align:center;
+
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:900px){
+
+#room{
+
+height:500px;
+
+}
+
+.item{
+
+width:80px;
+
+height:80px;
+
+font-size:34px;
+
+}
+
+header h1{
+
+font-size:28px;
+
+}
+
+}
